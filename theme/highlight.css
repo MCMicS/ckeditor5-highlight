@@ -13,17 +13,52 @@
 }
 
 @define-mixin highlight-marker-color $color {
-	.ck-content .marker-$color {
-		background-color: var(--ck-highlight-marker-$color);
+	.ck-content {
+		& .marker-$color {
+			background-color: var(--ck-highlight-marker-$color);
+		}
+	}
+
+	.ck.ck-icon {
+		&.marker-$color {
+			--ck-highlight-marker-$(color)-primary: var(--ck-highlight-marker-$color);
+			--ck-highlight-marker-$(color)-secondary: currentColor;
+
+			& path {
+				fill: var(--ck-highlight-marker-$(color)-secondary);
+
+				&.ck-icon__fill {
+					fill: var(--ck-highlight-marker-$(color)-primary);
+				}
+			}
+		}
 	}
 }
 
 @define-mixin highlight-pen-color $color {
-	.ck-content .pen-$color {
-		color: var(--ck-highlight-pen-$color);
+	.ck-content {
 
-		/* Override default yellow background of `<mark>` from user agent stylesheet */
-		background-color: transparent;
+	& .pen-$color {
+		  color: var(--ck-highlight-pen-$color);
+
+		  /* Override default yellow background of `<mark>` from user agent stylesheet */
+		  background-color: transparent;
+	  }
+	}
+
+	.ck.ck-icon {
+		&.pen-$color {
+			--ck-highlight-pen-$(color)-primary: var(--ck-highlight-pen-$color);
+			--ck-highlight-pen-$(color)-secondary: currentColor;
+
+			& path {
+				fill: var(--ck-highlight-pen-$(color)-secondary);
+
+				&.ck-icon__fill {
+					fill: var(--ck-highlight-pen-$(color)-primary);
+				}
+			}
+		}
 	}
 }
 
@@ -34,3 +69,5 @@
 
 @mixin highlight-pen-color red;
 @mixin highlight-pen-color green;
+
+

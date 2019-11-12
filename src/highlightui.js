@@ -119,7 +119,6 @@ export default class HighlightUI extends Plugin {
 		function decorateHighlightButton( button ) {
 			button.bind( 'isEnabled' ).to( command, 'isEnabled' );
 			button.bind( 'isOn' ).to( command, 'value', value => value === option.model );
-			button.iconView.fillColor = option.color;
 			button.iconView.extendTemplate( {
 				attributes: {
 					class: option.class
@@ -257,7 +256,6 @@ export default class HighlightUI extends Plugin {
 function bindToolbarIconStyleToActiveColor( dropdownView ) {
 	const actionView = dropdownView.buttonView.actionView;
 
-	actionView.iconView.bind( 'fillColor' ).to( dropdownView.buttonView, 'color' );
 	const bind = dropdownView.buttonView.bindTemplate;
 	actionView.iconView.extendTemplate( {
 		attributes: {
